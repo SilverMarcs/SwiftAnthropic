@@ -81,26 +81,6 @@ public protocol AnthropicService {
    func streamMessage(
       _ parameter: MessageParameter)
    async throws -> AsyncThrowingStream<MessageStreamResponse, Error>
-   
-   // MARK: Text Completion
-   
-   /// - Parameter parameters: Parameters for the create text completion request.
-   /// - Returns: A [TextCompletionResponse](https://docs.anthropic.com/claude/reference/complete_post).
-   /// - Throws: An error if the request fails.
-   ///
-   /// For more information, refer to [Anthropic's Text Completion API documentation](https://docs.anthropic.com/claude/reference/complete_post).
-   func createTextCompletion(
-      _ parameter: TextCompletionParameter)
-   async throws -> TextCompletionResponse
-   
-   /// - Parameter parameters: Parameters for the create stream text completion request.
-   /// - Returns: A [TextCompletionResponse](https://docs.anthropic.com/claude/reference/streaming).
-   /// - Throws: An error if the request fails.
-   ///
-   /// For more information, refer to [Anthropic's Text Completion API documentation](https://docs.anthropic.com/claude/reference/streaming).
-   func createStreamTextCompletion(
-      _ parameter: TextCompletionParameter)
-   async throws -> AsyncThrowingStream<TextCompletionStreamResponse, Error>
 }
 
 extension AnthropicService {

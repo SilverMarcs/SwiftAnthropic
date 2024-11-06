@@ -58,28 +58,4 @@ struct DefaultAnthropicService: AnthropicService {
       let request = try AnthropicAPI(base: basePath, apiPath: .messages).request(apiKey: apiKey, version: apiVersion, method: .post, params: localParameter, betaHeaders: betaHeaders)
       return try await fetchStream(type: MessageStreamResponse.self, with: request, debugEnabled: debugEnabled)
    }
-   
-   /// "messages-2023-12-15"
-   // MARK: Text Completion
-
-   func createTextCompletion(
-      _ parameter: TextCompletionParameter)
-      async throws -> TextCompletionResponse
-   {
-      var localParameter = parameter
-      localParameter.stream = false
-      let request = try AnthropicAPI(base: basePath, apiPath: .textCompletions).request(apiKey: apiKey, version: apiVersion, method: .post, params: localParameter)
-      return try await fetch(type: TextCompletionResponse.self, with: request, debugEnabled: debugEnabled)
-   }
-   
-   func createStreamTextCompletion(
-      _ parameter: TextCompletionParameter)
-      async throws -> AsyncThrowingStream<TextCompletionStreamResponse, Error>
-   {
-      var localParameter = parameter
-      localParameter.stream = true
-      let request = try AnthropicAPI(base: basePath, apiPath: .textCompletions).request(apiKey: apiKey, version: apiVersion, method: .post, params: localParameter)
-      return try await fetchStream(type: TextCompletionStreamResponse.self, with: request, debugEnabled: debugEnabled)
-   }
-   
 }
